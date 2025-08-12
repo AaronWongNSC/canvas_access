@@ -25,6 +25,11 @@ def list_to_dict(ParentCanvasObject, Class, object_list):
         CanvasObject_dict[object['id']] = Class(ParentCanvasObject, object)
     return CanvasObject_dict
 
+def print_dict(CanvasObject_dict):
+    for object_id, object in CanvasObject_dict.items():
+        print(object)
+    return
+
 def parse_navigation_links(link_list):
     first_link = ''
     current_link = ''

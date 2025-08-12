@@ -2,7 +2,7 @@ Get data using the Canvas API. The data is dumped into dictionaries for easier a
 
 ## Basic Usage
 
-```
+```python
 from canvas_access.canvas import Canvas
 
 API_URL = "https://campus.instructure.com"

@@ -1,4 +1,4 @@
-Get data using the Canvas API. The data is dumped into dictionaries for easier access. This is more of a teacher-facing project than an admin-facint project.
+Get data using the Canvas API. The data is dumped into dictionaries for easier access. This is more of a teacher-facing project than an admin-facing project.
 
 ## Basic Usage
 

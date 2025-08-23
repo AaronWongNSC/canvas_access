@@ -1,18 +1,23 @@
-Get data using the Canvas API. The data is dumped into dictionaries for easier access. Am I going to properly document this? Probably not.
+Get data using the Canvas API. The data is dumped into dictionaries for easier access. This is more of a teacher-facing project than an admin-facint project.
 
 ## Basic Usage
 
 ```python
 from canvas_access.canvas import Canvas
+from canvas_access.util import print_dict
 
 API_URL = "https://campus.instructure.com"
 API_KEY = "GetYourOwnKey"
 
-session = Canvas(API_URL, API_KEY)
-session.info()
+canvas = Canvas(API_URL, API_KEY)
+canvas.info()
+canvas.all_info()
 
 courses = session.get_courses() # Generates a dictionary of all courses indexed by course numbers
-course = session.get_course(course_id) # Generates a CanvasObject from the course information
+print_dict(courses)
+course = courses[course_id] # Gets the Course CanvasObject from the dictionary
+
+course = session.get_course(course_id) # Gets the Course CanvasObject from the API
 ```
 
 ## General Comments
@@ -22,12 +27,29 @@ course = session.get_course(course_id) # Generates a CanvasObject from the cours
 * Use .info() and .all_info() to see the data in the fields.
 * Child objects (Canvas -> Course) inherit data from the Parent object.
 
-## Structure
+## Structures
 
-* Canvas
-  * Course
-    * Assignment Group
-    * Assignment
-      * Submission
-    * Student
-      * Submission
+Parent -> Child relationships
+
+* Assignment -> Submission
+* AssignmentGroup -> Assignment
+* Canvas -> Course, Conversation
+* Conversation -> Message
+* Course -> Assignment, AssignmentGroup, Discussion, User
+* Discussion -> Entry
+* Entry -> None
+* Message -> None
+* Submission -> None
+* User -> Conversation, Submission
+
+Child <- Parent relationships
+* Assignment <- AssignmentGroup, Course
+* AssignmentGroup <- Course
+* Canvas <- None
+* Conversation <- Course, User
+* Course <- Canvas
+* Discussion <- Course
+* Entry <- Discussion
+* Message <- Conversation
+* Submission <- Assignment, User
+* User <- Course
